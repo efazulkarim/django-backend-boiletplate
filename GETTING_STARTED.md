@@ -5,6 +5,7 @@ Congratulations! Your Django API boilerplate is ready. This guide will walk you 
 ## Prerequisites Check
 
 Ensure you have these tools installed:
+
 - Python 3.12+ ✓ (verified: 3.12.9)
 - Docker & Docker Compose ✓ (verified: 29.2.1)
 - Node.js 20+ ✓ (verified: v24.3.0) - not required for API-only setup
@@ -40,6 +41,7 @@ docker compose up -d
 ```
 
 Expected services to start:
+
 - postgres: Database on port 5432
 - redis: Cache & message broker on port 6379
 - mailpit: Email testing UI on http://localhost:8025
@@ -99,6 +101,7 @@ python manage.py createsuperuser
 ```
 
 Follow the prompts to enter:
+
 - Email: admin@example.com
 - Password: (choose a strong password)
 
@@ -143,18 +146,21 @@ curl http://localhost:8000/api/
 ### Admin Interface
 
 Open http://localhost:8000/admin/
+
 - Login with the superuser you created
 - Manage users, view application logs
 
 ### Email Testing
 
 Open http://localhost:8025
+
 - View all emails sent during development
 - Test email templates and delivery
 
 ### Temporal Workflows
 
 Open http://localhost:8088
+
 - View workflow executions
 - Monitor workflow history
 - Debug workflow issues
@@ -162,6 +168,7 @@ Open http://localhost:8088
 ### Celery Monitoring
 
 Open http://localhost:5555
+
 - View Celery workers
 - Monitor task execution
 - View task statistics
@@ -347,10 +354,3 @@ python --version  # Should be 3.12+
 - Celery: https://docs.celeryproject.org/
 - Temporal: https://docs.temporal.io/
 - Channels (WebSockets): https://channels.readthedocs.io/
-
-## Support
-
-For issues or questions:
-1. Check the README.md for project overview
-2. Review Django Keel documentation
-3. Check test files for examples
