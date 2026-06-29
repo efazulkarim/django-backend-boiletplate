@@ -1,20 +1,14 @@
 """Tests for API endpoints."""
 import pytest
-from rest_framework.test import APIClient
 from rest_framework import status
-from django.contrib.auth import get_user_model
-
-
-User = get_user_model()
 
 
 @pytest.mark.django_db
 class TestAPIRoot:
     """Test API root endpoint."""
 
-    def test_api_root(self):
+    def test_api_root(self, client):
         """Test API root returns welcome message."""
-        client = APIClient()
         response = client.get('/api/')
         assert response.status_code == status.HTTP_200_OK
         assert 'message' in response.json()
@@ -26,24 +20,36 @@ class TestAPIRoot:
 class TestUserAPI:
     """Test user API endpoints."""
 
-    def test_user_profile_requires_auth(self):
+    def test_profile_requires_auth(self, client):
         """Test user profile requires authentication."""
-        client = APIClient()
-        response = client.get('/api/profile/')
-        assert response.status_code == status.HTTP_401_UNAUTHORIZED
+        response = client.get('/api/users/profile/')
+        assert response.status_code in (status.HTTP_401_UNAUTHORIZED, status.HTTP_403_FORBIDDEN)
 
-    def test_user_profile_authenticated(self):
-        """Test user profile with authentication."""
-        # Create user
-        user = User.objects.create_user(
-            email='test@example.com',
-            password='testpass123'
-        )
-        
-        # Authenticate
-        client = APIClient()
-        client.force_authenticate(user=user)
-        
-        response = client.get('/api/profile/')
+    def test_profile_returns_user_data(self, auth_client, user):
+        """Test user profile returns correct data."""
+        response = auth_client.get('/api/users/profile/')
         assert response.status_code == status.HTTP_200_OK
-        assert response.json()['email'] == 'test@example.com'
+        assert response.json()['email'] == user.email
+        assert response.json()['first_name'] == user.first_name
+
+    def test_profile_update(self, auth_client, user):
+        """Test PATCH profile updates allowed fields."""
+        response = auth_client.patch(
+            '/api/users/profile/',
+            {'first_name': 'Updated', 'last_name': 'Name'},
+            format='json',
+        )
+        assert response.status_code == status.HTTP_200_OK
+        assert response.json()['first_name'] == 'Updated'
+        assert response.json()['last_name'] == 'Name'
+
+    def test_profile_update_ignores_disallowed_fields(self, auth_client, user):
+        """Test PATCH profile ignores fields not in serializer."""
+        response = auth_client.patch(
+            '/api/users/profile/',
+            {'email': 'hacked@example.com', 'is_staff': True},
+            format='json',
+        )
+        assert response.status_code == status.HTTP_200_OK
+        assert response.json()['email'] == user.email
+        assert response.json()['is_staff'] is False

@@ -1,10 +1,10 @@
 # Production dependencies
 Django>=6.0,<6.1
-django-allauth[sessionaccount]>=65.0,<66.0
-django-allauth>=65.0,<66.0
+django-allauth[socialaccount]>=65.0,<66.0
 djangorestframework>=3.15.0,<4.0
 drf-spectacular>=0.27.0,<0.28
-django-cors>=5.0.0,<6.0
+django-cors-headers>=4.4.0,<5.0
+django-filter>=24.0,<26.0
 celery>=5.4.0,<6.0
 redis>=5.2.0,<6.0
 channels[daphne]>=4.2.0,<5.0

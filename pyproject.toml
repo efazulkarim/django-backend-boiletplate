@@ -8,11 +8,11 @@ authors = [
 requires-python = ">=3.12"
 dependencies = [
     "Django>=6.0,<6.1",
-    "django-allauth[socailaccount]>=65.0,<66.0",
-    "django-allauth>=65.0,<66.0",
+    "django-allauth[socialaccount]>=65.0,<66.0",
     "djangorestframework>=3.15.0,<4.0",
     "drf-spectacular>=0.27.0,<0.28",
-    "django-cors>=5.0.0,<6.0",
+    "django-cors-headers>=4.4.0,<5.0",
+    "django-filter>=24.0,<26.0",
     "celery>=5.4.0,<6.0",
     "redis>=5.2.0,<6.0",
     "channels[daphne]>=4.2.0,<5.0",
@@ -28,6 +28,7 @@ dev = [
     "pytest>=8.0.0,<9.0",
     "pytest-django>=4.10.0,<5.0",
     "pytest-cov>=6.0.0,<7.0",
+    "factory-boy>=3.3.0,<4.0",
     "ruff>=0.8.0,<1.0",
     "mypy>=1.15.0,<2.0",
     "django-stubs>=5.0.0,<6.0",
@@ -39,6 +40,9 @@ dev = [
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["apps", "config", "temporal_app"]
 
 [tool.uv]
 dev-dependencies = []

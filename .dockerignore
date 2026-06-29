@@ -1,0 +1,61 @@
+# Version control
+.git
+.gitignore
+
+# Python
+__pycache__
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Django
+*.log
+/static/
+/media/
+/staticfiles/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Testing
+.coverage
+htmlcov/
+.pytest_cache/
+.mypy_cache/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docs / meta
+README.md
+ARCHITECTURE.md
+GETTING_STARTED.md
+.claude/
+skills.json
+Justfile
+pytest.ini
+requirements-dev.txt
+docker-compose.yml
+
+# Temporal (runs separately)
+temporal_app/
+
+# CI
+.github/

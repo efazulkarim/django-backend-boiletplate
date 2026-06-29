@@ -1,13 +1,15 @@
-"""API views for example endpoints."""
-from rest_framework.decorators import api_view
+"""API views using DRF ViewSets."""
+from rest_framework.decorators import action, api_view, permission_classes
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
-from django.contrib.auth import get_user_model
+from rest_framework.viewsets import ViewSet
 
-User = get_user_model()
+from apps.api.serializers import UserSerializer, UserProfileUpdateSerializer
 
 
 @api_view(['GET'])
+@permission_classes([AllowAny])
 def api_root(request):
     """API root endpoint."""
     return Response({
@@ -16,23 +18,26 @@ def api_root(request):
         'endpoints': {
             'health': '/health/',
             'ready': '/health/ready/',
+            'profile': '/api/profile/',
             'auth': '/api/auth/',
         },
     }, status=status.HTTP_200_OK)
 
 
-@api_view(['GET'])
-def user_profile(request):
-    """Get current user profile."""
-    if not request.user.is_authenticated:
-        return Response(
-            {'error': 'Authentication required'},
-            status=status.HTTP_401_UNAUTHORIZED
-        )
-    
-    return Response({
-        'email': request.user.email,
-        'first_name': request.user.first_name,
-        'last_name': request.user.last_name,
-        'is_staff': request.user.is_staff,
-    }, status=status.HTTP_200_OK)
+class UserViewSet(ViewSet):
+    """ViewSet for user-related operations."""
+
+    permission_classes = [IsAuthenticated]
+
+    @action(detail=False, methods=['get', 'patch'], url_path='profile')
+    def profile(self, request):
+        """GET: return current user profile. PATCH: update profile."""
+        if request.method == 'PATCH':
+            serializer = UserProfileUpdateSerializer(
+                request.user, data=request.data, partial=True
+            )
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
+            return Response(UserSerializer(request.user).data)
+
+        return Response(UserSerializer(request.user).data)
