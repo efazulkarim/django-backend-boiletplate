@@ -8,7 +8,6 @@
       "Bash(python manage.py showmigrations*)",
       "Bash(python manage.py migrate --run-syncdb*)",
       "Bash(python manage.py runserver*)",
-      "Bash(python manage.py shell*)",
       "Bash(python manage.py createsuperuser*)",
       "Bash(python manage.py collectstatic*)",
       "Bash(python manage.py test*)",
@@ -47,6 +46,7 @@
       "Bash(git push*)",
       "Bash(git commit*)",
       "Bash(python manage.py migrate*)",
+      "Bash(python manage.py shell*)",
       "Bash(python manage.py dbshell*)",
       "Bash(python manage.py sqlmigrate*)",
       "Bash(pip install*)",
@@ -77,6 +77,12 @@
             "command": "node \".claude/hooks/post-tool-use-ruff.js\"",
             "timeout": 30,
             "statusMessage": "Running ruff..."
+          },
+          {
+            "type": "command",
+            "command": "node \".claude/hooks/post-tool-use-mypy.js\"",
+            "timeout": 30,
+            "statusMessage": "Type checking..."
           }
         ]
       }

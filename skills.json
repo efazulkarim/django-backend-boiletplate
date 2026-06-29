@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json.schemastore.org/skills.json",
+  "skills": [
+    {
+      "name": "django-models",
+      "source": "local",
+      "path": "./.claude/skills/django-models"
+    },
+    {
+      "name": "drf-views",
+      "source": "local",
+      "path": "./.claude/skills/drf-views"
+    },
+    {
+      "name": "django-migrations",
+      "source": "local",
+      "path": "./.claude/skills/django-migrations"
+    },
+    {
+      "name": "django-settings",
+      "source": "local",
+      "path": "./.claude/skills/django-settings"
+    },
+    {
+      "name": "django-auth",
+      "source": "local",
+      "path": "./.claude/skills/django-auth"
+    },
+    {
+      "name": "pytest-django",
+      "source": "local",
+      "path": "./.claude/skills/pytest-django"
+    },
+    {
+      "name": "celery-tasks",
+      "source": "local",
+      "path": "./.claude/skills/celery-tasks"
+    },
+    {
+      "name": "redis-caching",
+      "source": "local",
+      "path": "./.claude/skills/redis-caching"
+    },
+    {
+      "name": "neon-postgres",
+      "source": "local",
+      "path": "./.claude/skills/neon-postgres"
+    },
+    {
+      "name": "llm-provider-fallback",
+      "source": "local",
+      "path": "./.claude/skills/llm-provider-fallback"
+    },
+    {
+      "name": "polar-payments",
+      "source": "local",
+      "path": "./.claude/skills/polar-payments"
+    },
+    {
+      "name": "stripe-payments",
+      "source": "local",
+      "path": "./.claude/skills/stripe-payments"
+    },
+    {
+      "name": "security-and-hardening",
+      "source": "local",
+      "path": "./.claude/skills/security-and-hardening"
+    },
+    {
+      "name": "test-driven-development",
+      "source": "local",
+      "path": "./.claude/skills/test-driven-development"
+    },
+    {
+      "name": "caveman",
+      "source": "local",
+      "path": "./.claude/skills/caveman"
+    }
+  ]
+}
