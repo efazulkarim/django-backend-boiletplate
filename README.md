@@ -1,4 +1,4 @@
-# My API Project
+# Django Backend Boiletplate
 
 A production-ready Django API with Celery, Temporal, and WebSockets.
 
@@ -24,6 +24,7 @@ A production-ready Django API with Celery, Temporal, and WebSockets.
 ## Quick Start
 
 1. **Install dependencies**:
+
    ```bash
    # Using uv (recommended)
    pip install uv
@@ -34,22 +35,26 @@ A production-ready Django API with Celery, Temporal, and WebSockets.
    ```
 
 2. **Start services**:
+
    ```bash
    docker compose up -d
    ```
 
 3. **Configure environment**:
+
    ```bash
    cp .env.example .env
    # Edit .env with your settings
    ```
 
 4. **Run migrations**:
+
    ```bash
    python manage.py migrate
    ```
 
 5. **Create superuser**:
+
    ```bash
    python manage.py createsuperuser
    ```
@@ -123,6 +128,7 @@ python temporal_app/run_temporal_worker.py
 ## Documentation
 
 See the `docs/` directory for detailed documentation on:
+
 - API development
 - Testing
 - Deployment
