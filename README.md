@@ -1,4 +1,4 @@
-# Django Backend Boiletplate
+# Django Backend Boilerplate
 
 A production-ready Django API with Celery, Temporal, and WebSockets.
 
